@@ -1,0 +1,7 @@
+[build]
+  base    = "flav"            # Specifies the base directory if your Next.js app is not in the root
+  command = "npm run build"   # The command to build the Next.js app
+  publish = ".next"           # Publish directory, relative to 'flav'
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
