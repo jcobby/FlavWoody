@@ -1,6 +1,7 @@
 import ContactUs from "./components/ContactUs";
 import Navbarr from "./components/Navbarr";
 import Image from 'next/image';
+import SlideShow from "./components/SlideShow";
 
 
 export default function Home() {
@@ -64,6 +65,10 @@ export default function Home() {
         </div>
       </div>
 
+
+        {/* SLIDE SHOW */}
+        <SlideShow />
+        
       <ContactUs />
     </div>
   );

@@ -31,3 +31,20 @@ body {
     text-wrap: balance;
   }
 } */
+/* Custom Swiper styles using Tailwind classes */
+.mySwiper .swiper-pagination-bullet {
+  @apply bg-slate-500 opacity-50 w-2 h-2 rounded-full; /* Bullet styling */
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  @apply bg-slate-900 opacity-100 w-3 h-3; /* Active bullet styling */
+}
+
+.mySwiper .swiper-button-next, 
+.mySwiper .swiper-button-prev {
+  @apply text-white opacity-70 hover:opacity-100; /* Arrow button styling */
+}
+
+.mySwiper {
+  @apply w-full h-3/4;
+}

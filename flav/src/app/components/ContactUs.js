@@ -1,6 +1,9 @@
 'use client'
 
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 function ContactUs() {
   const [form, setForm] = useState({
@@ -8,6 +11,14 @@ function ContactUs() {
     emailOrPhone: '',
     message: '',
   });
+
+  const [modal, setModal] = useState({
+    isOpen: false,
+    success: false,
+    message: '',
+  });
+
+  const [loading, setLoading] = useState(false); // Loading state for spinner
 
   const handleChange = (e) => {
     setForm({
@@ -18,8 +29,34 @@ function ContactUs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic, e.g., send data to an API or email service
-    console.log('Form submitted:', form);
+    setLoading(true); // Start loading spinner
+
+    const templateParams = {
+      name: form.name,
+      email: form.emailOrPhone, // Assuming emailOrPhone is for both
+      message: form.message,
+    };
+
+    emailjs.send('service_jsj2pbh', 'template_yhr3jti', templateParams, '7uyqi_nxvtb_UptMj')
+      .then((response) => {
+        setModal({
+          isOpen: true,
+          success: true,
+          message: 'Your message was sent successfully!',
+        });
+        setLoading(false); // Stop loading spinner
+      }, (error) => {
+        setModal({
+          isOpen: true,
+          success: false,
+          message: 'Failed to send your message. Please try again.',
+        });
+        setLoading(false); // Stop loading spinner
+      });
+  };
+
+  const closeModal = () => {
+    setModal({ ...modal, isOpen: false });
   };
 
   return (
@@ -42,7 +79,7 @@ function ContactUs() {
               <strong>Email:</strong> contact@dwoodyshop.com
             </li>
             <li>
-              <strong>Location:</strong> Accra, Ghana Name
+              <strong>Location:</strong> Accra, Ghana 
             </li>
           </ul>
         </div>
@@ -102,12 +139,41 @@ function ContactUs() {
             <button
               type="submit"
               className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              disabled={loading} // Disable button when loading
             >
               Send Message
             </button>
           </form>
         </div>
       </div>
+
+      {/* Loading Spinner Modal */}
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="flex items-center justify-center bg-white p-4 rounded-lg shadow-lg">
+            <FontAwesomeIcon icon={faSpinner} spin className="text-indigo-600 text-3xl" />
+            <span className="ml-3 text-gray-700 text-lg">Sending...</span>
+          </div>
+        </div>
+      )}
+
+      {/* Success/Error Modal */}
+      {modal.isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className={`bg-white p-6 rounded-lg shadow-lg ${modal.success ? 'border-green-500' : 'border-red-500'} border-t-4`}>
+            <h2 className={`text-lg font-semibold mb-4 ${modal.success ? 'text-green-500' : 'text-red-500'}`}>
+              {modal.success ? 'Success!' : 'Error!'}
+            </h2>
+            <p className="text-gray-700 mb-4">{modal.message}</p>
+            <button
+              onClick={closeModal}
+              className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
