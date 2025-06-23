@@ -2,6 +2,8 @@ import ContactUs from "./components/ContactUs";
 import Navbarr from "./components/Navbarr";
 import Image from 'next/image';
 import SlideShow from "./components/SlideShow";
+import Footer from "./components/Footer";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -31,11 +33,11 @@ export default function Home() {
             Craftsmanship Meets Nature
           </h1>
           <p className="text-sm md:text-lg lg:text-xl max-w-2xl mb-6">
-            At D&apos;Woody, we craft unique, handcrafted wood products that bring warmth and character to your home.
+            D&apos;woodyshop is a bespoke furniture company aimed at designing, producing, and selling high-quality, affordable and durable furniture tailored to meet the needs of homes, offices, schools and hospitality establishments.
           </p>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full">
+          <Link href="/contact" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full">
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -70,6 +72,8 @@ export default function Home() {
         <SlideShow />
         
       <ContactUs />
+
+      <Footer />
     </div>
   );
 }

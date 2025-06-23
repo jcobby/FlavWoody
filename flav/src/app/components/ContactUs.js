@@ -69,17 +69,20 @@ function ContactUs() {
             Feel free to reach out to us with any questions or inquiries.
           </p>
           <ul className="text-gray-600">
+            {/* <li className="mb-2">
+              <strong>Address:</strong> Accra. Ghana
+            </li> */}
             <li className="mb-2">
-              <strong>Address:</strong> 123 Woodwork Avenue, Craft City, CC 12345
+              <strong>Phone:</strong> +233 592080783 OR +233 261713604
             </li>
             <li className="mb-2">
-              <strong>Phone:</strong> +233 000000000
-            </li>
-            <li className="mb-2">
-              <strong>Email:</strong> contact@dwoodyshop.com
+              <strong>Email:</strong> Stevbaxter24@gmail.com
             </li>
             <li>
               <strong>Location:</strong> Accra, Ghana 
+            </li>
+            <li>
+              <strong>Instagram:</strong> D&apos;woodyshop
             </li>
           </ul>
         </div>

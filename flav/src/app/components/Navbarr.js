@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 
 function Navbarr() {
@@ -34,23 +35,23 @@ function Navbarr() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className={`text-2xl font-bold ${navbarBg ? 'text-black' : 'text-white'} `}>
+            <Link href="/" className={`text-2xl font-bold ${navbarBg ? 'text-black' : 'text-white'} `}>
             D&apos;Woody Shop
-            </a>
+            </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <a href="/" className={`${navbarBg ? 'text-black' : 'text-gray-300'} hover:text-gray-600`}>
+            <Link href="/" className={`${navbarBg ? 'text-black' : 'text-gray-300'} hover:text-gray-600`}>
               Home
-            </a>
-            <a href="/about" className={`${navbarBg ? 'text-black' : 'text-gray-200'} hover:text-gray-600`}>
+            </Link>
+            <Link href="/aboutUs" className={`${navbarBg ? 'text-black' : 'text-gray-200'} hover:text-gray-600`}>
               About Us
-            </a>
-            <a href="/products" className={`${navbarBg ? 'text-black' : 'text-gray-200'} hover:text-gray-600`}>
+            </Link>
+            <Link href="/products" className={`${navbarBg ? 'text-black' : 'text-gray-200'} hover:text-gray-600`}>
               Products
-            </a>
-            <a href="/contact" className={`${navbarBg ? 'text-black' : 'text-gray-200'} hover:text-gray-600`}>
+            </Link>
+            <Link href="/contact" className={`${navbarBg ? 'text-black' : 'text-gray-200'} hover:text-gray-600`}>
               Contact
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -65,18 +66,18 @@ function Navbarr() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className={`md:hidden bg-white ${navbarBg ? 'text-black' : 'text-gray-800'} px-2 pt-2 pb-3 space-y-1`}>
-          <a href="/" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
+          <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
             Home
-          </a>
-          <a href="/about" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
-            About Us
-          </a>
-          <a href="/products" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
+          </Link>
+          <Link href="/products" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
             Products
-          </a>
-          <a href="/contact" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
+          </Link>
+          <Link href="/aboutUs" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
+            About Us
+          </Link>
+          <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100">
             Contact
-          </a>
+          </Link>
         </div>
       )}
     </nav>
