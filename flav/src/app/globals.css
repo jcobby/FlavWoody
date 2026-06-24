@@ -2,49 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  body {
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Refined wood-toned scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #efe6da;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #a8703b;
+    border-radius: 999px;
+    border: 2px solid #efe6da;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8c5a2e;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  /* Eyebrow / kicker label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.28em] text-wood-600;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-wood-500;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-espresso px-7 py-3.5 text-sm font-medium text-cream transition-all duration-300 hover:bg-wood-600 hover:shadow-lg hover:shadow-wood-900/20;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-espresso/20 px-7 py-3.5 text-sm font-medium text-espresso transition-all duration-300 hover:border-espresso hover:bg-espresso hover:text-cream;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-} */
-/* Custom Swiper styles using Tailwind classes */
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Scroll-reveal — initial hidden state, revealed by Reveal component */
+  .reveal {
+    opacity: 0;
+    transform: translateY(42px);
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
+/* ---- Swiper styling, tuned to the wood theme ---- */
 .mySwiper .swiper-pagination-bullet {
-  @apply bg-slate-500 opacity-50 w-2 h-2 rounded-full; /* Bullet styling */
+  @apply bg-espresso opacity-30 w-2 h-2 rounded-full transition-all;
 }
 
 .mySwiper .swiper-pagination-bullet-active {
-  @apply bg-slate-900 opacity-100 w-3 h-3; /* Active bullet styling */
+  @apply bg-wood-500 opacity-100 w-6 rounded-full;
 }
 
-.mySwiper .swiper-button-next, 
+.mySwiper .swiper-button-next,
 .mySwiper .swiper-button-prev {
-  @apply text-white opacity-70 hover:opacity-100; /* Arrow button styling */
+  @apply text-espresso opacity-60 hover:opacity-100 transition-opacity;
 }
 
-.mySwiper {
-  @apply w-full h-3/4;
+.mySwiper .swiper-button-next::after,
+.mySwiper .swiper-button-prev::after {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.mySwiper .swiper-slide {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s ease;
+  opacity: 0.45;
+  transform: scale(0.88);
+}
+
+.mySwiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
 }
